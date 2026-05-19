@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import argparse
 import math
-import re
 import string
 from collections import Counter
 from typing import Dict, List, Tuple
@@ -273,6 +272,8 @@ def main() -> None:
 
     args = parser.parse_args()
     ciphertext = read_text(args.input)
+    if not clean_letters(ciphertext):
+        raise ValueError("Ciphertext must contain at least one alphabetic character (A-Z).")
 
     if args.key:
         key = clean_letters(args.key)

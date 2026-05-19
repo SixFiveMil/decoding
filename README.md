@@ -30,10 +30,17 @@ Useful options:
 - `--restarts 20` for more hill-climb restarts
 - `--top 10` to print only top 10 letter frequencies
 - `--show-ngrams` to include digraph/trigraph/double-letter tables
+- `--progress-every 1000` to print more frequent hill-climb progress updates
+- `--early-stop 0` to disable early stopping across restarts
+- `--quiet` to suppress restart/progress log noise
 
-## Next step
+Suggested run profiles:
 
-## Vigenere / Poly-Alphabetic Decoder
+- Quick check: `python mono_decoder.py --iterations 8000 --restarts 6 --quiet`
+- Deeper pass: `python mono_decoder.py --iterations 80000 --restarts 25 --progress-every 2000 --output mono-guess.txt`
+- Full diagnostic: `python mono_decoder.py --show-ngrams --show-map --top 26`
+
+## Next Step: Vigenere / Poly-Alphabetic Decoder
 
 The poly decoder uses:
 
@@ -52,3 +59,11 @@ Useful options:
 - `--min-keylen 2 --max-keylen 25` to widen key-length search
 - `--top-lens 10` to evaluate more candidate lengths
 - `--key LEMON` if you already know the key
+- `--show-analysis` to print IC ranking and Kasiski vote hints
+- `--output poly-guess.txt` to save decrypted plaintext to a file
+
+Suggested run profiles:
+
+- Quick auto-recovery: `python poly_decoder.py --top-lens 6`
+- Wider key search: `python poly_decoder.py --min-keylen 2 --max-keylen 30 --top-lens 12 --show-analysis`
+- Known key decrypt: `python poly_decoder.py --key LEMON --output poly-guess.txt`
