@@ -1,0 +1,2 @@
+# No external dependencies required - this project uses only Python standard library.
+# Python 3.10+ required for type hints (from __future__ import annotations)
